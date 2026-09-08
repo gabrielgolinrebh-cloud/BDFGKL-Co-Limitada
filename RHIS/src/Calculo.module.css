@@ -1,0 +1,23 @@
+.container{display:flex;flex-direction:column;min-height:100vh;background:#f0f7ff;padding:1.25rem;font-family:system-ui,-apple-system,sans-serif;}
+.screenTitle{color:#0369a1;font-weight:800;font-size:1.25rem;margin:0.5rem 0 1.25rem;text-align:center;}
+.dropzone{background:#fff;padding:2rem 1.5rem;border-radius:1.25rem;box-shadow:0 8px 20px -6px rgba(2,132,199,0.1);border:2px dashed #38bdf8;text-align:center;}
+.uploadIcon{font-size:2.5rem;display:block;margin-bottom:0.5rem;}
+.dropzoneTitle{font-weight:700;color:#0f172a;margin:0.5rem 0 0.25rem;font-size:0.95rem;}
+.dropzoneDesc{font-size:0.775rem;color:#64748b;margin:0 0 1.25rem;}
+.fileCard{background:#f0f9ff;padding:1rem 1.25rem;border-radius:1rem;box-shadow:0 4px 12px rgba(2,132,199,0.08);border:1px solid #bae6fd;margin-bottom:1.25rem;display:flex;align-items:center;gap:0.875rem;}
+.fileTitle{font-weight:700;font-size:0.875rem;color:#0369a1;margin:0 0 0.15rem;}
+.fileSubtitle{font-size:0.75rem;color:#0284c7;margin:0;}
+.sectionTitle{font-weight:800;font-size:1.05rem;color:#0f172a;margin:1.5rem 0 0.75rem;}
+.configCard{background:#fff;border-radius:1rem;box-shadow:0 6px 16px -4px rgba(2,132,199,0.08);padding:1.25rem;font-size:0.875rem;display:flex;flex-direction:column;gap:0.875rem;border:1px solid #e0f2fe;}
+.configRow{display:flex;justify-content:space-between;align-items:center;padding-bottom:0.5rem;border-bottom:1px solid #f1f5f9;}
+.configRow:last-child{border-bottom:none;padding-bottom:0;}
+.configLabel{color:#64748b;font-weight:500;}
+.typeHighlight{color:#0284c7;font-weight:700;background:#e0f2fe;padding:0.2rem 0.6rem;border-radius:0.5rem;font-size:0.8rem;}
+.calcButton{width:100%;padding:0.9rem;border-radius:0.875rem;font-weight:700;font-size:0.95rem;margin-top:1.75rem;border:none;}
+.btnActive{background:linear-gradient(135deg,#0284c7,#0369a1);color:#fff;box-shadow:0 6px 16px rgba(2,132,199,0.3);cursor:pointer;}
+.btnDisabled{background:#cbd5e1;color:#94a3b8;cursor:not-allowed;}
+.headerCard{background:#fff;border-radius:1rem;box-shadow:0 6px 16px -4px rgba(2,132,199,0.08);padding:0.875rem 1.25rem;border:1px solid #e0f2fe;display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;}
+.backBtn{background:none;border:none;color:#0284c7;font-weight:700;font-size:0.875rem;cursor:pointer;padding:0;}
+.profileSection{display:flex;align-items:center;gap:0.375rem;}
+.profilePic{width:5px;height:5px;border-radius:50%;object-fit:cover;margin:0;}
+.profileName{font-weight:700;font-size:0.875rem;color:#0f172a;}

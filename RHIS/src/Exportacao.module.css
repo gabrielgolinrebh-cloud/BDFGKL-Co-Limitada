@@ -1,0 +1,21 @@
+.container{display:flex;flex-direction:column;min-height:100vh;background:#f0f7ff;padding:1.25rem;font-family:system-ui,-apple-system,sans-serif;}
+.screenTitle{color:#0369a1;font-weight:800;font-size:1.25rem;margin:0.5rem 0 1.25rem;text-align:center;}
+.card{background:#fff;border-radius:1.25rem;box-shadow:0 8px 24px -6px rgba(2,132,199,0.1);padding:1.25rem;margin-bottom:1.25rem;border:1px solid #e0f2fe;}
+.cardTitle{font-weight:800;font-size:1.05rem;color:#0f172a;margin:0 0 1rem;}
+.summaryGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:0.75rem;text-align:center;}
+.summaryItem{display:flex;flex-direction:column;align-items:center;background:#f8fafc;padding:0.875rem 0.5rem;border-radius:0.875rem;border:1px solid #e2e8f0;}
+.summaryIcon{font-size:1.5rem;margin-bottom:0.25rem;}
+.summaryValue{font-weight:800;font-size:1.15rem;color:#0369a1;}
+.summaryLabel{font-size:0.725rem;color:#64748b;font-weight:500;}
+.table{width:100%;font-size:0.85rem;text-align:left;border-collapse:collapse;}
+.th{color:#64748b;border-bottom:2px solid #e2e8f0;padding:0.6rem 0.4rem;font-weight:700;font-size:0.75rem;}
+.td{padding:0.75rem 0.4rem;border-bottom:1px solid #f1f5f9;color:#334155;}
+.center{text-align:center;}
+/* Cores condicionais para status e horas */
+.valGreen{color:#16a34a;font-weight:700;background:#dcfce7;padding:0.2rem 0.5rem;border-radius:0.4rem;}
+.valYellow{color:#d97706;font-weight:700;background:#fef3c7;padding:0.2rem 0.5rem;border-radius:0.4rem;}
+.valRed{color:#dc2626;font-weight:700;background:#fee2e2;padding:0.2rem 0.5rem;border-radius:0.4rem;}
+.alertBox{background:#ecfdf5;border:1px solid #a7f3d0;padding:1rem;border-radius:0.875rem;margin-bottom:1.25rem;}
+.alertText{color:#065f46;font-size:0.85rem;margin:0;line-height:1.4;}
+.btnRefazer{width:100%;border:1.5px solid #cbd5e1;background:#fff;color:#475569;padding:0.85rem 0;border-radius:0.875rem;font-weight:700;margin-bottom:0.75rem;cursor:pointer;}
+.btnExportar{width:100%;background:linear-gradient(135deg,#0284c7,#0369a1);color:#fff;padding:0.85rem 0;border-radius:0.875rem;font-weight:700;display:flex;justify-content:center;align-items:center;gap:0.5rem;border:none;cursor:pointer;box-shadow:0 6px 16px rgba(2,132,199,0.3);}
