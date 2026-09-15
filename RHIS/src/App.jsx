@@ -3,6 +3,7 @@ import Home from './Home';
 import Calculo from './Calculo';
 import Exportacao from './Exportacao';
 import Perfil from './Perfil';
+import './App.css';
 
 export default function App() {
   const [screen, setScreen] = useState('home');
@@ -15,36 +16,49 @@ export default function App() {
   );
 
   return (
-    <div className="max-w-md mx-auto min-h-screen bg-gray-100 flex flex-col justify-between relative shadow-2xl border-x border-gray-200">
-      {/* Cabeçalho exibido em todas as telas exceto na Home */}
-      {screen !== 'home' && (
+    <div style={{ minHeight: '100vh', backgroundColor: '#f3f4f6', display: 'flex', flexDirection: 'column' }}>
+      
+      {/* Cabeçalho do Site */}
+      <header style={{ backgroundColor: '#ffffff', padding: '1rem 2rem', display: 'flex', justifyContent: 'space-between', alignItems: 'center', boxShadow: '0 1px 3px 0 rgba(0, 0, 0, 0.1)' }}>
         <div>
-          <header className="bg-indigo-900 text-white p-4 flex justify-between items-center">
-            <button
+          {/* Espaço para logo ou título, se necessário, ou apenas um botão voltar */}
+          {screen !== 'home' ? (
+            <button 
               onClick={() => setScreen('home')}
-              className="font-bold text-sm"
+              style={{ background: 'none', border: 'none', color: '#0284c7', fontWeight: 'bold', fontSize: '1rem', cursor: 'pointer' }}
             >
-              Olá, {userName}
+              &larr; Voltar para Home
             </button>
-            <img
-              src={userAvatar}
-              onClick={() => setIsProfileOpen(true)}
-              alt="Perfil"
-              className="w-8 h-8 rounded-full cursor-pointer border border-white object-cover"
-            />
-          </header>
+          ) : (
+            <h1 style={{ margin: 0, fontSize: '1.25rem', color: '#1e3a8a', fontWeight: 'bold' }}>RHIS</h1>
+          )}
         </div>
-      )}
+
+        {/* Área do Perfil */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
+          <span style={{ fontSize: '1rem', fontWeight: 'bold', color: '#374151' }}>
+            Olá, {userName}
+          </span>
+          <img
+            src={userAvatar}
+            onClick={() => setIsProfileOpen(true)}
+            alt="Perfil"
+            style={{ width: '3rem', height: '3rem', borderRadius: '50%', cursor: 'pointer', border: '2px solid #0284c7', objectFit: 'cover', backgroundColor: '#fff' }}
+          />
+        </div>
+      </header>
 
       {/* Conteúdo das telas */}
-      <main className="flex-1 overflow-y-auto">
-        {screen === 'home' && <Home onNext={() => setScreen('calculo')} />}
-        {screen === 'calculo' && (
-          <Calculo onCalculate={() => setScreen('exportacao')} />
-        )}
-        {screen === 'exportacao' && (
-          <Exportacao onReset={() => setScreen('calculo')} />
-        )}
+      <main style={{ flex: 1, padding: '2rem', display: 'flex', justifyContent: 'center' }}>
+        <div style={{ width: '100%', maxWidth: '800px' }}>
+          {screen === 'home' && <Home onNext={() => setScreen('calculo')} />}
+          {screen === 'calculo' && (
+            <Calculo onCalculate={() => setScreen('exportacao')} />
+          )}
+          {screen === 'exportacao' && (
+            <Exportacao onReset={() => setScreen('calculo')} />
+          )}
+        </div>
       </main>
 
       {/* Modal de perfil */}

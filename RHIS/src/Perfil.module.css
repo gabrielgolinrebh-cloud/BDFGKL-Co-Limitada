@@ -7,8 +7,8 @@
 .changePhotoBtn{background:none;border:none;color:#0284c7;font-weight:700;font-size:0.875rem;cursor:pointer;}
 .fieldGroup{margin-bottom:2rem;width:100%;box-sizing:border-box;}
 .label{display:block;font-size:0.75rem;color:#64748b;font-weight:600;margin-bottom:0.35rem;}
-.input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #e2e8f0;padding:0.5rem 0;color:#0f172a;font-weight:600;font-size:0.95rem;outline:none;transition:border-color .2s;}
-.input:focus{border-bottom-color:#0284c7;}
+.input{width:100%;box-sizing:border-box;border:none;border-bottom:2px solid #e2e8f0;padding:0.5rem;color:#0f172a;background-color:#ffffff;font-weight:600;font-size:0.95rem;outline:none;transition:border-color .2s; border-radius: 4px 4px 0 0;}
+.input:focus{border-bottom-color:#0284c7; background-color: #f8fafc;}
 .actions{display:flex;justify-content:space-between;align-items:center;gap:1rem;width:100%;}
 .cancelBtn{background:none;border:none;color:#64748b;font-weight:700;padding:0.6rem 1rem;cursor:pointer;}
 .saveBtn{background:linear-gradient(135deg,#0284c7,#0369a1);color:#fff;padding:0.65rem 2rem;border-radius:0.75rem;font-weight:700;border:none;box-shadow:0 4px 12px rgba(2,132,199,0.3);cursor:pointer;}
