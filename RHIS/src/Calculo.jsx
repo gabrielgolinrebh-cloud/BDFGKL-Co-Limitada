@@ -10,6 +10,15 @@ export default function Calculo({ onCalculate }) {
     const d = localStorage.getItem('csvData');
     return d ? JSON.parse(d).length : 0;
   });
+  const [csvDataState, setCsvDataState] = useState(() => {
+    const d = localStorage.getItem('csvData');
+    return d ? JSON.parse(d) : [];
+  });
+  const [currentPage, setCurrentPage] = useState(1);
+  const ITEMS_PER_PAGE = 30;
+
+  const [editIndex, setEditIndex] = useState(null);
+  const [editFormData, setEditFormData] = useState({ nome: '', interjornada: '' });
 
   const fileInputRef = useRef(null);
 
@@ -41,10 +50,37 @@ export default function Calculo({ onCalculate }) {
         localStorage.setItem('csvFileName', file.name);
         setFileName(file.name);
         setRecordCount(data.length);
+        setCsvDataState(data);
         setImported(true);
       }
     };
     reader.readAsText(file);
+  };
+
+  const handleDelete = (index) => {
+    const newData = [...csvDataState];
+    newData.splice(index, 1);
+    setCsvDataState(newData);
+    setRecordCount(newData.length);
+    localStorage.setItem('csvData', JSON.stringify(newData));
+
+    const newTotalPages = Math.ceil(newData.length / ITEMS_PER_PAGE);
+    if (currentPage > newTotalPages && newTotalPages > 0) {
+      setCurrentPage(newTotalPages);
+    }
+  };
+
+  const handleEditOpen = (index) => {
+    setEditIndex(index);
+    setEditFormData(csvDataState[index]);
+  };
+
+  const handleEditSave = () => {
+    const newData = [...csvDataState];
+    newData[editIndex] = { ...newData[editIndex], ...editFormData };
+    setCsvDataState(newData);
+    localStorage.setItem('csvData', JSON.stringify(newData));
+    setEditIndex(null);
   };
 
   return (
@@ -112,6 +148,89 @@ export default function Calculo({ onCalculate }) {
         </div>
       </div>
 
+      {/* Planilha */}
+      {imported && csvDataState.length > 0 && (
+        <>
+          <div className={styles.sectionTitle}>Planilha Importada</div>
+          <div className={styles.tableContainer}>
+            <table className={styles.table}>
+              <thead>
+                <tr>
+                  <th>Nome</th>
+                  <th>Horas (Interjornada)</th>
+                  <th>Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                {csvDataState.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE).map((row, idx) => {
+                  const originalIndex = (currentPage - 1) * ITEMS_PER_PAGE + idx;
+                  return (
+                    <tr key={originalIndex}>
+                      <td>{row.nome}</td>
+                      <td>{row.interjornada}</td>
+                      <td className={styles.actions}>
+                        <button className={styles.iconBtn} onClick={() => handleEditOpen(originalIndex)} title="Editar">✏️</button>
+                        <button className={styles.iconBtn} onClick={() => handleDelete(originalIndex)} title="Excluir">🗑️</button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Controles de Paginação */}
+          {Math.ceil(csvDataState.length / ITEMS_PER_PAGE) > 1 && (
+            <div className={styles.pagination}>
+              <button 
+                disabled={currentPage === 1} 
+                onClick={() => setCurrentPage(p => p - 1)}
+                className={styles.pageBtn}
+              >
+                Anterior
+              </button>
+              
+              <div className={styles.pageNumbers}>
+                {Array.from({ length: Math.ceil(csvDataState.length / ITEMS_PER_PAGE) }, (_, i) => i + 1).map(page => {
+                  // Mostrar algumas páginas (ex: 1, 2, 3...)
+                  // Uma lógica simples para não mostrar 100 páginas seria limitar, mas por hora vamos mostrar todas ou um range.
+                  // Para evitar dezenas de botões, mostraremos apenas até 10 ou os mais próximos.
+                  const total = Math.ceil(csvDataState.length / ITEMS_PER_PAGE);
+                  if (
+                    page === 1 || 
+                    page === total || 
+                    (page >= currentPage - 2 && page <= currentPage + 2)
+                  ) {
+                    return (
+                      <button
+                        key={page}
+                        className={`${styles.pageNumber} ${currentPage === page ? styles.pageNumberActive : ''}`}
+                        onClick={() => setCurrentPage(page)}
+                      >
+                        {page}
+                      </button>
+                    );
+                  } else if (
+                    page === currentPage - 3 || page === currentPage + 3
+                  ) {
+                    return <span key={page} style={{color: '#94a3b8'}}>...</span>;
+                  }
+                  return null;
+                })}
+              </div>
+
+              <button 
+                disabled={currentPage === Math.ceil(csvDataState.length / ITEMS_PER_PAGE)} 
+                onClick={() => setCurrentPage(p => p + 1)}
+                className={styles.pageBtn}
+              >
+                Próxima
+              </button>
+            </div>
+          )}
+        </>
+      )}
+
       {/* Botão de Disparo */}
       <button
         onClick={onCalculate}
@@ -122,6 +241,33 @@ export default function Calculo({ onCalculate }) {
       >
         Calcular
       </button>
+
+      {/* Modal de Edição */}
+      {editIndex !== null && (
+        <div className={styles.modalOverlay}>
+          <div className={styles.modalContent}>
+            <h3>Editar Registro</h3>
+            <div className={styles.inputGroup}>
+              <label>Nome</label>
+              <input 
+                value={editFormData.nome} 
+                onChange={(e) => setEditFormData({...editFormData, nome: e.target.value})}
+              />
+            </div>
+            <div className={styles.inputGroup}>
+              <label>Horas (Interjornada)</label>
+              <input 
+                value={editFormData.interjornada} 
+                onChange={(e) => setEditFormData({...editFormData, interjornada: e.target.value})}
+              />
+            </div>
+            <div className={styles.modalActions}>
+              <button onClick={() => setEditIndex(null)} className={styles.btnCancel}>Cancelar</button>
+              <button onClick={handleEditSave} className={styles.btnSave}>Salvar</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
