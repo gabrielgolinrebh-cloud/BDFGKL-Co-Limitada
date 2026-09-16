@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Home from './Home';
 import Calculo from './Calculo';
+import CalculoSobreaviso from './CalculoSobreaviso';
 import Exportacao from './Exportacao';
 import Perfil from './Perfil';
 import './App.css';
@@ -52,9 +53,18 @@ export default function App() {
       <main style={{ flex: 1, padding: '2rem', display: 'flex', justifyContent: 'center' }}>
         <div style={{ width: '100%', maxWidth: '800px' }}>
           {screen === 'home' && <Home onNext={() => setScreen('calculo')} />}
+          
           {screen === 'calculo' && (
-            <Calculo onCalculate={() => setScreen('exportacao')} />
+            <Calculo 
+              onCalculate={() => setScreen('exportacao')} 
+              onCalculateSobreaviso={() => setScreen('sobreaviso')}
+            />
           )}
+
+          {screen === 'sobreaviso' && (
+            <CalculoSobreaviso onBack={() => setScreen('calculo')} />
+          )}
+
           {screen === 'exportacao' && (
             <Exportacao onReset={() => setScreen('calculo')} />
           )}
