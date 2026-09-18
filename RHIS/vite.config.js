@@ -4,6 +4,7 @@ import { defineConfig } from 'vite'
 
 // https://vite.dev/config/
 export default defineConfig({
+  base: '/BDFGKL-Co-Limitada/',
   plugins: [
     react(),
     babel({ presets: [reactCompilerPreset()] })
