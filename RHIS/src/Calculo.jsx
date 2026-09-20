@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import styles from './Calculo.module.css';
 
-export default function Calculo({ onCalculate, onCalculateSobreaviso }) {
+export default function Calculo({ onCalculate }) {
   const [imported, setImported] = useState(() => !!localStorage.getItem('csvData'));
   const [fileName, setFileName] = useState(
     () => localStorage.getItem('csvFileName') || 'planilha_interjornada.csv'
@@ -263,14 +263,6 @@ export default function Calculo({ onCalculate, onCalculateSobreaviso }) {
         }`}
       >
         Calcular Interjornada
-      </button>
-
-      <button
-        onClick={onCalculateSobreaviso}
-        disabled={false}
-        className={`${styles.calcButton} ${styles.btnActive}`}
-      >
-        Calcular Sobreaviso
       </button>
 
       {/* Modal de Edição */}

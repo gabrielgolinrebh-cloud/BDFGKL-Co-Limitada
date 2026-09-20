@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Home.module.css';
 
-export default function Home({ onNext }) {
+export default function Home() {
   return (
     <div className={styles.container}>
       {/* Cabeçalho */}
@@ -51,10 +51,6 @@ export default function Home({ onNext }) {
           </div>
         </div>
 
-        {/* Botão de ação */}
-        <button onClick={onNext} className={styles.button}>
-          Começar Agora
-        </button>
       </div>
     </div>
   );
