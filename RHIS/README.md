@@ -1,1 +1,8 @@
-# ESSE É DA ABA DO GIT, COMO TA PRIVADO O REPOSITORIO, IGNORE ESSE E ALTERE APENAS O OUTRO EXTERNO PRO SOR VERIFICAR
+# IMIGRANTES:
+
+**Brenon**
+**Djonny**
+**Flávia**
+**Gabriel**
+**Kauã**
+**Leonardo**
