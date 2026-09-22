@@ -1,2 +1,8 @@
-# metodos-ageis
-Métodos Ágeis
+# IMIGRANTES:
+
+**Brenon**
+**Djonny**
+**Flávia**
+**Gabriel**
+**Kauã**
+**Leonardo**
