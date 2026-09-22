@@ -1,4 +1,4 @@
-# IMIGRANTES:
+# INTEGRANTES:
 
 **Brenon**
 **Djonny**
